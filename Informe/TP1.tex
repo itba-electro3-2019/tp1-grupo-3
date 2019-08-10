@@ -1,0 +1,116 @@
+\documentclass[a4paper]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[spanish, es-tabla]{babel}
+
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+
+\usepackage{float}
+\usepackage{graphicx}
+\graphicspath{ {./Imagenes/} }
+
+\usepackage{multirow}
+\setlength{\doublerulesep}{\arrayrulewidth}
+
+\usepackage{tikz}
+\usetikzlibrary{matrix,calc}
+
+\usepackage{array}
+\newcolumntype{C}[1]{>{\centering\let\newline\\\arraybackslash\hspace{0pt}}m{#1}}
+
+\usepackage[american]{circuitikz}
+
+\usepackage{fancyhdr}
+
+\usepackage{units} 
+
+\pagestyle{fancy}
+\fancyhf{}
+\lhead{22.13 Electrónica III}
+\rhead{Mechoulam, Lambertucci, Martorel, Londero}
+\rfoot{Página \thepage}
+
+\input{Karnaugh/karnaugh-map.tex}
+
+\begin{document}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
+%								CARATULA								%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
+
+\input{Caratula.tex}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
+%								INFORME									%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\section*{Introducción}
+
+
+\section*{Desarrollo de la experiencia}
+
+
+\subsection*{Ejercicio 2}
+
+Dadas las siguientes expresiones:
+
+\begin{equation}
+f \left( e,d,c,b,a \right) = \sum m \left( 0,2,4,7,8,10,12,16,18,20,23,24,25,26,27,28 \right)
+\label{equ:minterms}
+\end{equation}
+
+\begin{equation}
+f \left( d,c,b,a \right) = \prod \left( M_0,M_2,M_4,M_7,M_8,M_10,M_{12} \right)
+\label{equ:maxterms}
+\end{equation}
+
+se procede a hallar la mínima expresión posible para ambas usando álgebra booleana y mapas de Karnaugh.
+
+Para la expresión (\ref{equ:minterms}):
+\begin{center}
+\[
+	f \left( e,d,c,b,a \right) = \bar{e}\bar{d}\bar{c}\bar{b}\bar{a} \ + \ \bar{e}\bar{d}\bar{c}b\bar{a} \ + \ \bar{e}\bar{d}c\bar{b}\bar{a} \ + \ \bar{e}\bar{d}cba \ + \ \bar{e}d\bar{c}\bar{b}\bar{a} \ + \ \bar{e}d\bar{c}b\bar{a} \ + \ \bar{e}dc\bar{b}\bar{a} \ +
+\]
+\[
+	e\bar{d}\bar{c}\bar{b}\bar{a} \ + \ e\bar{d}\bar{c}b\bar{a} \ + \ e\bar{d}c\bar{b}\bar{a} \ + \ e\bar{d}cba \ + \ ed\bar{c}\bar{b}\bar{a}\ + \ ed\bar{c}\bar{b}a \ + \ ed\bar{c}b\bar{a} \ + \ ed\bar{c}ba \ + \ edc\bar{b}\bar{a} 
+\]
+\end{center}
+
+\input{Karnaugh/Mapa1.tex}
+
+En esta se pueden observar 4 grupos distintos:
+\begin{enumerate}
+	\item Compuesto por los casilleros 0, 4, 8, 12, 16, 20, 24 y 28, obteniéndose la expresión $ b a \bar{d} c $;
+	\item Compuesto por los casilleros 7 y 23, obteniéndose la expresión $ e d \bar{c} $;
+	\item Compuesto por los casilleros 0, 2, 8, 10, 16, 18, 24 y 26, obteniéndose la expresión $ \bar{c} \bar{a} $;
+	\item Compuesto por los casilleros 24, 25, 26 y 27, obteniéndose la expresión $ \bar{b} \bar{a} $
+\end{enumerate}
+
+de esta forma se llega a:
+\begin{equation}
+	f \left( e,d,c,b,a \right) = b a \bar{d} c \ + \  e d \bar{c} \ + \ \bar{c} \bar{a} \ + \ \bar{b} \bar{a}
+\end{equation}
+
+
+
+Por otro lado, para la expresión (\ref{equ:maxterms}):
+
+\input{Karnaugh/Mapa2.tex}
+
+En esta se pueden observar 2 grupos:
+\begin{enumerate}
+	\item Compuesto por los casilleros 0, 4, 8 y 12, obteniéndose la expresión $ b + a $;
+	\item Compuesto por los casilleros 0, 2, 8 y 10, obteniéndose la expresión $ c + a $
+\end{enumerate}
+
+obteniendo finalmente la expresión: 
+
+\begin{equation}
+	f \left( d,c,b,a \right) = \left( b \ + \ a \right) \cdot \left( c \ + \ a \right)
+\end{equation}
+
+\section*{Conclusión}
+
+
+\end{document}
