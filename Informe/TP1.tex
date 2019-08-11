@@ -92,23 +92,44 @@ de esta forma se llega a:
 	f \left( e,d,c,b,a \right) = b a \bar{d} c \ + \  e d \bar{c} \ + \ \bar{c} \bar{a} \ + \ \bar{b} \bar{a}
 \end{equation}
 
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.9\textwidth]{Circuito1.PNG}
+\caption{Circuito resultante de simplificar la expresión (\ref{equ:minterms}).}
+	\label{fig:circ1}
+\end{figure}
 
+Por otro lado, para la expresión (\ref{equ:maxterms}) se escribe en forma de maxterminos:
 
-Por otro lado, para la expresión (\ref{equ:maxterms}):
+\[
+	f \left( d,c,b,a \right) = \left( a + b + c + d \right) \cdot \left( a + \bar{b} + c + d\right) \cdot \left( a + b+ \bar{c} + d \right) \cdot \left( \bar{a} + \bar{b} + \bar{c} + d \right) \cdot
+\]
+\[
+	\left( a + b + c + \bar{d} \right) \cdot \left( a + \bar{b} + c + \bar{d} \right) \cdot \left( a + b + \bar{c} +\bar{d} \right)
+\]
 
 \input{Karnaugh/Mapa2.tex}
 
-En esta se pueden observar 2 grupos:
+En esta se pueden observar 3 grupos:
 \begin{enumerate}
 	\item Compuesto por los casilleros 0, 4, 8 y 12, obteniéndose la expresión $ b + a $;
+	\item Compuesto por el casillero 7, obteniéndose la expresión $ \bar{a} + \bar{b} + \bar{c} + d $;
 	\item Compuesto por los casilleros 0, 2, 8 y 10, obteniéndose la expresión $ c + a $
 \end{enumerate}
 
 obteniendo finalmente la expresión: 
 
 \begin{equation}
-	f \left( d,c,b,a \right) = \left( b \ + \ a \right) \cdot \left( c \ + \ a \right)
+	f \left( d,c,b,a \right) = \left( b \ + \ a \right) \cdot \left( c \ + \ a \right) \cdot \left( \bar{a} \ + \ \bar{b} \ + \ \bar{c} \ + \ d \right)
 \end{equation}
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.9\textwidth]{Circuito2.PNG}
+\caption{Circuito resultante de simplificar la expresión (\ref{equ:maxterms}).}
+	\label{fig:circ2}
+\end{figure}
+
 
 \section*{Conclusión}
 
