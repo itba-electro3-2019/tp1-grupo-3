@@ -61,19 +61,66 @@ f \left( e,d,c,b,a \right) = \sum m \left( 0,2,4,7,8,10,12,16,18,20,23,24,25,26,
 \end{equation}
 
 \begin{equation}
-f \left( d,c,b,a \right) = \prod \left( M_0,M_2,M_4,M_7,M_8,M_10,M_{12} \right)
+f \left( d,c,b,a \right) = \prod \left( M_0,M_2,M_4,M_7,M_8,M_{10},M_{12} \right)
 \label{equ:maxterms}
 \end{equation}
 
 se procede a hallar la mínima expresión posible para ambas usando álgebra booleana y mapas de Karnaugh.
-
 Para la expresión (\ref{equ:minterms}):
+
 \begin{center}
 \[
 	f \left( e,d,c,b,a \right) = \bar{e}\bar{d}\bar{c}\bar{b}\bar{a} \ + \ \bar{e}\bar{d}\bar{c}b\bar{a} \ + \ \bar{e}\bar{d}c\bar{b}\bar{a} \ + \ \bar{e}\bar{d}cba \ + \ \bar{e}d\bar{c}\bar{b}\bar{a} \ + \ \bar{e}d\bar{c}b\bar{a} \ + \ \bar{e}dc\bar{b}\bar{a} \ +
 \]
 \[
 	e\bar{d}\bar{c}\bar{b}\bar{a} \ + \ e\bar{d}\bar{c}b\bar{a} \ + \ e\bar{d}c\bar{b}\bar{a} \ + \ e\bar{d}cba \ + \ ed\bar{c}\bar{b}\bar{a}\ + \ ed\bar{c}\bar{b}a \ + \ ed\bar{c}b\bar{a} \ + \ ed\bar{c}ba \ + \ edc\bar{b}\bar{a} 
+\]
+El desarrollo utilizando algebra booleana es el siguiente:
+\[
+	f \left( e,d,c,b,a \right) = \underbrace{\bar{e}\bar{d}\bar{c}\bar{b}\bar{a} \ + \ \bar{e}\bar{d}\bar{c}b\bar{a} }_{\bar{e}\bar{d}\bar{c}\bar{a}}\ + 							\underbrace{\bar{e}\bar{d}\bar{c}\bar{b}\bar{a} \ + \bar{e}\bar{d}c\bar{b}  \bar{a}  }_{\bar{e}\bar{d}\bar{b}\bar{a}}\  +
+				\underbrace{\bar{e}\bar{d} c \bar{b}\bar{a} \ + e \bar{d} c\bar{b}  \bar{a}  }_{\bar{d}c\bar{b}\bar{a}}\  +
+				\underbrace{\bar{e}\bar{d} c b a \ + e \bar{d} c b a  }_{ \bar{d} c b a}\ +
+\]
+\[
+				\underbrace{\bar{e} d  \bar{c} \bar{b} \bar{a} \ + \bar{e} d \bar{c} b \bar{a}  }_{ \bar{e} d \bar{c}  \bar{a}}\ +
+				\underbrace{\bar{e} d  c \bar{b} \bar{a} \ + \bar{e} d \bar{c} \bar{b} \bar{a}  }_{ \bar{e} d \bar{b}  \bar{a}}\ +
+				\underbrace{\bar{e} d  c \bar{b} \bar{a} \ + e d c \bar{b} \bar{a}  }_{  d c \bar{b}  \bar{a}}\ +
+				\underbrace{e \bar{d} \bar{c} \bar{b} \bar{a} \ + e \bar{d} \bar{c} b \bar{a}  }_{  e\bar{d}  \bar{c}  \bar{a}}\ +
+\]
+\[
+				\underbrace{e d \bar{c} \bar{b} \bar{a} \ + e d \bar{c} \bar{b} a }_{  e d  \bar{c}  \bar{b}}\ +
+				\underbrace{e  d \bar{c} \bar{b} a \ + e d \bar{c} b a  }_{  ed  \bar{c}  a}\ +
+				\underbrace{\underbrace{e d \bar{c} \bar{b} \bar{a} \ + e d \bar{c} b \bar{a}  }_{  ed  \bar{c}  \bar{a}}\ +
+				\underbrace{e d \bar{c} \bar{b} a \ + e d \bar{c} b a  }_{ ed \bar{c}  \bar{a}}}_{  ed  \bar{c}  \bar{a}} =
+\]
+De la anterior expresion, reordenando se consigue:
+\[
+				f \left( e,d,c,b,a \right) =\underbrace{\bar{e} \bar{d} \bar{c} \bar{b} \bar{a} \ + e \bar{d} \bar{c} \bar{a}  }_{  \bar{d}  \bar{c}  \bar{a}}\ +
+						\underbrace{\bar{e} \bar{d} \bar{b} \bar{a}  \ + \bar{e} \bar{d} \bar{b} \bar{a}  }_{  \bar{d}  c b a}\ +
+						\bar{d} cba + ed\bar{c}\bar{b}+
+						\underbrace{\bar{d} c \bar{b} \bar{a} \ + d c \bar{b} \bar{a}  }_{  c \bar{b} \bar{a}}\ +
+\]
+\[	
+					\underbrace{e d  \bar{c} \bar{a} \ + e d \bar{c} a  }_{  ed \bar{c} }\ +
+					\underbrace{\bar{e} d \bar{c} \bar{a} \ + e d \bar{c} \bar{a}  }_{  d \bar{c} \bar{a}}
+\]
+\[	
+				f \left( e,d,c,b,a \right) =\underbrace{\bar{d}   \bar{c} \bar{a} \ + d  \bar{c} \bar{a}   }_{  \bar{c}\bar{a} }\ +
+						\underbrace{e  d \bar{c} \ +e d  \bar{c} \bar{b}   }_{  e  d \bar{c}  }\ +\bar{d}cba+\bar{e}\bar{b}\bar{a}+c\bar{b}\bar{a}
+\]
+teniendo en cuenta que 
+
+\[
+		c\bar{b}\bar{a}= 
+\]
+\[
+		\bar{e}\bar{b}\bar{a}=
+\]
+
+se llega a la expresión
+
+\[
+		f \left( e,d,c,b,a \right) =bac\bar{d}+ed\bar{c}+\bar{c}\bar{a}+\bar{b}\bar{a}
 \]
 \end{center}
 
