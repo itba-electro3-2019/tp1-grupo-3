@@ -50,7 +50,8 @@
 
 \section*{Desarrollo de la experiencia}
 
-
+\subsection*{Ejercicio 1}
+Se realizo un programa que calcula el rango y resolucion de la a entrada
 \subsection*{Ejercicio 2}
 
 Dadas las siguientes expresiones:
@@ -251,9 +252,57 @@ coincidente con la ecuación	(\ref{equ:boolmax}). Por último, se utiliza dicha 
 \caption{Circuito resultante de simplificar la expresión (\ref{equ:maxterms}).}
 	\label{fig:circ2}
 \end{figure}
+\subsection*{Ejercicio 3}
+\subsection*{Ejercicio 4}
+En este punto se pidio armar un circuito que dados 4 bits de entrada en binario lo transforme a codigo de Gray  se armo la tabla de verdad 
+\begin{table}[H]
+\centering
+\begin{tabular}{|c|c|c|c|c|c|c|c|c|}
+\hline
+\textbf{$d$} & \textbf{$c$} & \textbf{$b$} & \textbf{$a$} & \textbf{$m_{ij}$} & \textbf{$y_4$} & \textbf{$y_3$} & \textbf{$y_2$} & \textbf{$y_1$} \\ \hline
+0              & 0              & 0              & 0              & \textbf{$m_i0$}   & 0              & 0              & 0              & 0              \\ \hline
+0              & 0              & 0              & 1              & \textbf{$m_i1$}   & 0              & 0              & 0              & 1              \\ \hline
+0              & 0              & 1              & 0              & \textbf{$m_i2$}   & 0              & 0              & 1              & 1              \\ \hline
+0              & 0              & 1              & 1              & \textbf{$m_i3$}   & 0              & 0              & 1              & 0              \\ \hline
+0              & 1              & 0              & 0              & \textbf{$m_i4$}   & 0              & 1              & 1              & 0              \\ \hline
+0              & 1              & 0              & 1              & \textbf{$m_i5$}   & 0              & 1              & 1              & 1              \\ \hline
+0              & 1              & 1              & 0              & \textbf{$m_i6$}   & 0              & 1              & 0              & 1              \\ \hline
+0              & 1              & 1              & 1              & \textbf{$m_i7$}   & 0              & 1              & 0              & 0              \\ \hline
+1              & 0              & 0              & 0              & \textbf{$m_i8$}   & 1              & 1              & 0              & 0              \\ \hline
+1              & 0              & 0              & 1              & \textbf{$m_i9$}   & 1              & 1              & 0              & 1              \\ \hline
+1              & 0              & 1              & 0              & \textbf{$m_iA$}   & 1              & 1              & 1              & 1              \\ \hline
+1              & 0              & 1              & 1              & \textbf{$m_iB$}   & 1              & 1              & 1              & 0              \\ \hline
+1              & 1              & 0              & 0              & \textbf{$m_iC$}   & 1              & 0              & 1              & 0              \\ \hline
+1              & 1              & 0              & 1              & \textbf{$m_iD$}   & 1              & 0              & 1              & 1              \\ \hline
+1              & 1              & 1              & 0              & \textbf{$m_iE$}   & 1              & 0              & 0              & 1              \\ \hline
+1              & 1              & 1              & 1              & \textbf{$m_iF$}   & 1              & 0              & 0              & 0              \\ \hline
+\end{tabular}
+\end{table}
 
+Se procede a escribir cada bit de salida en funcion de los minterminos:
+\[
+	y_4 = \sum_{j=8}^{F} m_{4j}  \  ; \ y_3 = \sum_{j=4}^{B} m_{3j}\  ; \ y_2 = \sum_{j=2}^{5} m_{2j} \ + \  \sum_{j=A}^{D} m_{2j}  \  ; \  y_1=m_{11}+m_{12}+m_{15}+m_{16}+m_{19}+m_{1A}+m_{1D}+m_{1E} 
+\]
+luego para llegar a la forma simplificada se hizo el mapa de Karnaugh de cada salida:
+\input{Karnaugh/Mapa3.tex}
+Se puede ver que $$y_4 = d$$
+del segundo bit:
+\input{Karnaugh/Mapa4.tex}
+De aqui $$y_3 = \bar{d}c+d\bar{c}$$
+continuando para la siguiente salida:
+\input{Karnaugh/Mapa5.tex}
+De aqui $$y_2 = \bar{c}b+c\bar{b}$$
+continuando para la ultima salida:
+\input{Karnaugh/Mapa6.tex}
+Finalmente se obtiene: $$y_1 = \bar{b}a+\bar{a}b$$
+Luego se armo el circuito únicamente utilizando compuertas \textbf{OR AND } y \textbf{NOT}
 
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.9\textwidth]{Circuito3.PNG}
+	\label{fig:circ3}
+\end{figure}
 \section*{Conclusión}
-
-
+Hablar algo del codigo de verilog
+\subsection*{Ejercicio 5}
 \end{document}
