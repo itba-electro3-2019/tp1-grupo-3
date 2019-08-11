@@ -66,7 +66,7 @@ f \left( d,c,b,a \right) = \prod \left( M_0,M_2,M_4,M_7,M_8,M_{10},M_{12} \right
 \end{equation}
 
 se procede a hallar la mínima expresión posible para ambas usando álgebra booleana y mapas de Karnaugh.
-Para la expresión (\ref{equ:minterms}):
+Escribiendo la expresión (\ref{equ:minterms}) en forma de minterminos se obtiene:
 
 \begin{center}
 \[
@@ -75,7 +75,7 @@ Para la expresión (\ref{equ:minterms}):
 \[
 	e\bar{d}\bar{c}\bar{b}\bar{a} \ + \ e\bar{d}\bar{c}b\bar{a} \ + \ e\bar{d}c\bar{b}\bar{a} \ + \ e\bar{d}cba \ + \ ed\bar{c}\bar{b}\bar{a}\ + \ ed\bar{c}\bar{b}a \ + \ ed\bar{c}b\bar{a} \ + \ ed\bar{c}ba \ + \ edc\bar{b}\bar{a} 
 \]
-El desarrollo utilizando algebra booleana es el siguiente:
+Su desarrollo utilizando álgebra booleana es el siguiente:
 \[
 	f \left( e,d,c,b,a \right) = \underbrace{\bar{e}\bar{d}\bar{c}\bar{b}\bar{a} \ + \ \bar{e}\bar{d}\bar{c}b\bar{a} }_{\bar{e}\bar{d}\bar{c}\bar{a}}\ + 							\underbrace{\bar{e}\bar{d}\bar{c}\bar{b}\bar{a} \ + \bar{e}\bar{d}c\bar{b}  \bar{a}  }_{\bar{e}\bar{d}\bar{b}\bar{a}}\  +
 				\underbrace{\bar{e}\bar{d} c \bar{b}\bar{a} \ + e \bar{d} c\bar{b}  \bar{a}  }_{\bar{d}c\bar{b}\bar{a}}\  +
@@ -93,7 +93,7 @@ El desarrollo utilizando algebra booleana es el siguiente:
 				\underbrace{\underbrace{e d \bar{c} \bar{b} \bar{a} \ + e d \bar{c} b \bar{a}  }_{  ed  \bar{c}  \bar{a}}\ +
 				\underbrace{e d \bar{c} \bar{b} a \ + e d \bar{c} b a  }_{ ed \bar{c}  \bar{a}}}_{  ed  \bar{c}  \bar{a}} =
 \]
-De la anterior expresion, reordenando se consigue:
+De la anterior expresión, reordenando se consigue:
 \[
 				f \left( e,d,c,b,a \right) =\underbrace{\bar{e} \bar{d} \bar{c} \bar{b} \bar{a} \ + e \bar{d} \bar{c} \bar{a}  }_{  \bar{d}  \bar{c}  \bar{a}}\ +
 						\underbrace{\bar{e} \bar{d} \bar{b} \bar{a}  \ + \bar{e} \bar{d} \bar{b} \bar{a}  }_{  \bar{d}  c b a}\ +
@@ -119,14 +119,17 @@ teniendo en cuenta que
 
 se llega a la expresión
 
-\[
+\begin{equation}
 		f \left( e,d,c,b,a \right) =bac\bar{d}+ed\bar{c}+\bar{c}\bar{a}+\bar{b}\bar{a}
-\]
+		\label{equ:boolmin}
+\end{equation}
 \end{center}
+
+Por otro lado, utilizando mapas de Karnaugh se consigue el siguiente gráfico:
 
 \input{Karnaugh/Mapa1.tex}
 
-En esta se pueden observar 4 grupos distintos:
+En este se pueden observar 4 grupos distintos:
 \begin{enumerate}
 	\item Compuesto por los casilleros 0, 4, 8, 12, 16, 20, 24 y 28, obteniéndose la expresión $ b a \bar{d} c $;
 	\item Compuesto por los casilleros 7 y 23, obteniéndose la expresión $ e d \bar{c} $;
@@ -134,28 +137,118 @@ En esta se pueden observar 4 grupos distintos:
 	\item Compuesto por los casilleros 24, 25, 26 y 27, obteniéndose la expresión $ \bar{b} \bar{a} $
 \end{enumerate}
 
-de esta forma se llega a:
-\begin{equation}
+de esta forma se llega a la expresión:
+\[
 	f \left( e,d,c,b,a \right) = b a \bar{d} c \ + \  e d \bar{c} \ + \ \bar{c} \bar{a} \ + \ \bar{b} \bar{a}
+\]
+
+la cual coincide con la ecuación (\ref{equ:boolmin}). De esta forma se representa, mediante un circuito de compuertas lógicas, la formula hallada.
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.9\textwidth]{Circuito1.PNG}
+\caption{Circuito resultante de simplificar la expresión (\ref{equ:minterms}).}
+	\label{fig:circ1}
+\end{figure}
+
+\begin{center}
+Por otro lado, la expresión (\ref{equ:maxterms}) se escribe en forma de maxterminos:
+\[
+	f \left( d,c,b,a \right) = \left( a + b + c + d \right) \cdot \left( a + \bar{b} + c + d\right) \cdot \left( a + b+ \bar{c} + d \right) \cdot \left( \bar{a} + \bar{b} + \bar{c} + d \right) \cdot
+\]
+\[
+	\left( a + b + c + \bar{d} \right) \cdot \left( a + \bar{b} + c + \bar{d} \right) \cdot \left( a + b + \bar{c} +\bar{d} \right)
+\]
+
+Su desarrollo utilizando álgebra booleana es el siguiente:
+\[
+	f \left( d,c,b,a \right) = \underbrace{\left( a + b + c + d \right) \cdot \left( a + b + \bar{c} +\bar{d} \right)}_{a + b} \cdot 
+	\left( \bar{a} + \bar{b} + \bar{c} + d \right) \cdot 
+\]
+\[
+	\left( a + b + \bar{c} + d \right) \cdot
+	\left( a + b + c + \bar{d} \right) \cdot 
+	\left( a + \bar{b} + c + d\right) \cdot 
+	\left( a + \bar{b} + c + \bar{d} \right)
+\]
+\[
+	f \left( d,c,b,a \right) = \left( a + b \right) \cdot \left( \bar{a} + \bar{b} + \bar{c} + d \right) \cdot 
+	\left( a + \bar{b} + c + d\right) \cdot \left( a + b + \bar{c} + d \right) \cdot
+\]
+\[
+	\left( a + b + c + \bar{d} \right) \cdot \underbrace{\left( a + \bar{b} + c + \bar{d} \right)  \cdot \left( a + b + c + d \right)}_{a + c}
+\]
+
+\[
+	f \left( d,c,b,a \right) = \left( a + b \right) \cdot \left( \bar{a} + \bar{b} + \bar{c} + d \right) \cdot 
+	\left( a + c \right) \cdot
+\]
+\[
+	\underbrace{\left( a + \bar{b} + c + d\right) \cdot \left( a + b + c + \bar{d} \right)\cdot}_{\alpha}
+	\underbrace{\left( a + b + \bar{c} + d \right) \cdot \left( a + b + c + \bar{d} \right)}_{\beta}
+\]
+
+\textsc{Cálculo auxiliar}
+\[
+	\alpha = \left[ \left( a + c + d \right) + \bar{b} \right] \cdot 
+	\left[ \left( a + c + \bar{d} \right) + b \right]  
+\]
+\[
+	\alpha = \underbrace{\left( a + c + d \right) \cdot \left( a + c + \bar{d} \right)}_{a + c}
+	+ \left( a + c + d \right) \cdot b + \left( a + c + \bar{d} \right) \cdot \bar{b} +
+	\underbrace{d \bar{d}}_{0}	
+\]
+\[
+	\alpha = a + c + \underbrace{\left( a + c \right) \cdot b + \left( a + c \right) \cdot \bar{b}}_{a + c} 
+	+ \underbrace{db + \bar{d}\bar{b}}_{1}	= a + c + 1
+\]
+
+De forma análoga se puede llegar a que
+\[	\beta = a + b + 1 \]
+
+Por lo tanto,
+\[
+	\alpha \cdot \beta = \left( a + c + 1 \right) \cdot \left( a + b + 1 \right)
+\]
+
+\[
+	\alpha \cdot \beta = a + b + c + ab + ac + cb + 1 = 1
+\]
+
+Luego,
+\begin{equation}
+f \left( d,c,b,a \right) = \left( a + b \right) \cdot \left( \bar{a} + \bar{b} + \bar{c} + d \right) \cdot 
+	\left( a + c \right)
+	\label{equ:boolmax}
 \end{equation}
 
+A su vez, usando mapas de Karnaugh, se obtiene lo siguiente:
 
-
-Por otro lado, para la expresión (\ref{equ:maxterms}):
-
+\end{center}
 \input{Karnaugh/Mapa2.tex}
 
-En esta se pueden observar 2 grupos:
+En esta se pueden observar 3 grupos:
 \begin{enumerate}
 	\item Compuesto por los casilleros 0, 4, 8 y 12, obteniéndose la expresión $ b + a $;
+	\item Compuesto por el casillero 7, obteniéndose la expresión $ \bar{a} + \bar{b} + \bar{c} + d $;
 	\item Compuesto por los casilleros 0, 2, 8 y 10, obteniéndose la expresión $ c + a $
 \end{enumerate}
 
 obteniendo finalmente la expresión: 
 
 \begin{equation}
-	f \left( d,c,b,a \right) = \left( b \ + \ a \right) \cdot \left( c \ + \ a \right)
+	f \left( d,c,b,a \right) = \left( b \ + \ a \right) \cdot \left( c \ + \ a \right) \cdot \left( \bar{a} \ + \ \bar{b} \ + \ \bar{c} \ + \ d \right)
 \end{equation}
+
+coincidente con la ecuación	(\ref{equ:boolmax}). Por último, se utiliza dicha formula dicha para elaborar un circuito de compuertas lógicas que la represente.
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.9\textwidth]{Circuito2.PNG}
+\caption{Circuito resultante de simplificar la expresión (\ref{equ:maxterms}).}
+	\label{fig:circ2}
+\end{figure}
+
 
 \section*{Conclusión}
 
