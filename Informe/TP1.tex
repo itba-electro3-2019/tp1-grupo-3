@@ -146,6 +146,7 @@ de esta forma se llega a la expresión:
 	f \left( e,d,c,b,a \right) = b a \bar{d} c \ + \  e d \bar{c} \ + \ \bar{c} \bar{a} \ + \ \bar{b} \bar{a}
 \]
 
+
 la cual coincide con la ecuación (\ref{equ:boolmin}). De esta forma se representa, mediante un circuito de compuertas lógicas, la formula hallada.
 
 \begin{figure}[H]
@@ -156,6 +157,21 @@ la cual coincide con la ecuación (\ref{equ:boolmin}). De esta forma se represen
 \end{figure}
 
 \begin{center}
+Luego se dedujo una expresion para escribirlo con compuertas \textbf{NOR}
+\[
+	f \left( e,d,c,b,a \right) = \overline{\overline{b a \bar{d} c }} \ + \  \overline{\overline{ e d \bar{c}}} \ + \ \overline{\overline{\bar{c} \bar{a}}} \ + \ \overline{\overline{ \bar{b} \bar{a}}}
+\]
+\[
+	f \left( e,d,c,b,a \right) =\overline{\overline{\overline{\bar{b}+\bar{a}+d+\bar{c}}+\overline{\bar{e}+\bar{d}+c}+\overline{c+a}+\overline{b+a}}}
+\]
+A la cual le corresponde el siguiente circuito:
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.9\textwidth]{Circuito4.PNG}
+	\caption{Circuito unicamente con NOR.}
+	\label{fig:circ4}
+\end{figure}
+
 Por otro lado, la expresión (\ref{equ:maxterms}) se escribe en forma de maxterminos:
 \[
 	f \left( d,c,b,a \right) = \left( a + b + c + d \right) \cdot \left( a + \bar{b} + c + d\right) \cdot \left( a + b+ \bar{c} + d \right) \cdot \left( \bar{a} + \bar{b} + \bar{c} + d \right) \cdot
@@ -251,6 +267,21 @@ coincidente con la ecuación	(\ref{equ:boolmax}). Por último, se utiliza dicha 
 	\includegraphics[width=0.9\textwidth]{Circuito2.PNG}
 \caption{Circuito resultante de simplificar la expresión (\ref{equ:maxterms}).}
 	\label{fig:circ2}
+\end{figure}
+Luego se dedujo una expresion para escribirlo con compuertas \textbf{NOR}
+\[
+	f \left( d,c,b,a \right) = \overline{\overline{\left( b \ + \ a \right) \cdot \left( c \ + \ a \right) \cdot \left( \bar{a} \ + \ \bar{b} \ + \ \bar{c} \ + \ d \right)}}
+\]
+\[
+	f \left( d,c,b,a \right) = \overline{\overline{\left( b \ + \ a \right)} + \overline{\left( c \ + \ a \right)} + \overline{\left( \bar{a} \ + \ \bar{b} \ + \ \bar{c} \ + \ d \right)}}
+\]
+a la cual le corresponde el siguiente circuito.
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.9\textwidth]{Circuito5.PNG}
+\caption{Circuito únicamente con compuertas NOR.}
+	\label{fig:circ5}
 \end{figure}
 \subsection*{Ejercicio 3}
 \subsection*{Ejercicio 4}
