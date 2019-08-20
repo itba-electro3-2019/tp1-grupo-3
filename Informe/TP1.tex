@@ -1,7 +1,7 @@
 \documentclass[a4paper]{article}
 \usepackage[utf8]{inputenc}
 \usepackage[spanish, es-tabla]{babel}
-
+\usepackage{xcolor}
 \usepackage{amsmath}
 \usepackage{amsfonts}
 \usepackage{amssymb}
@@ -333,7 +333,12 @@ Luego se armo el circuito únicamente utilizando compuertas \textbf{OR AND } y \
 	\includegraphics[width=0.9\textwidth]{Circuito3.PNG}
 	\label{fig:circ3}
 \end{figure}
-\section*{Conclusión}
-Hablar algo del codigo de verilog
+Finalmente se implemento en verilog un modulo que realiza la conversion de binario a codigo de gray utilizando la configuracion de compuertas de la \ref{fig:circ3}
+y una test bench que prueba todos los casos posibles.
 \subsection*{Ejercicio 5}
+En este punto habia que implementar en verilog un modulo que reciba dos numeros en formato \textbf{BCD} y devuelva su producto como dos numeros en el mismo formato.
+A lo largo del la implementación se presentaron diversas complicaciones  como el saber que scope tienen las variables, que bloques dentro de un modulo pueden tomar un set de lineas de manera procedural y como relacionar un modulo con otro.
+Luego de haber implementado el codigo se hizo tambien una test-bench que prueba todos los casos posibles
+\center \textcolor{red}{SUPONGO QUE HABRA QUE ESCRIBIR MEJOR ESTO}
 \end{document}
+
