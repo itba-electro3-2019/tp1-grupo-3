@@ -180,65 +180,33 @@ Por otro lado, la expresión (\ref{equ:maxterms}) se escribe en forma de maxterm
 	\left( a + b + c + \bar{d} \right) \cdot \left( a + \bar{b} + c + \bar{d} \right) \cdot \left( a + b + \bar{c} +\bar{d} \right)
 \]
 
+Que también puede ser expresada como
+\[
+	f \left( d,c,b,a \right) = a\bar{b}\bar{c}\bar{d} + ab\bar{c}\bar{d} +
+	a\bar{b}c\bar{d} + a\bar{b}cd + a\bar{b}\bar{c}d + ab\bar{c}d + \bar{a}bc\bar{d} + \bar{a}bcd + abcd
+\]
+
 Su desarrollo utilizando álgebra booleana es el siguiente:
 \[
-	f \left( d,c,b,a \right) = \underbrace{\left( a + b + c + d \right) \cdot \left( a + b + \bar{c} +\bar{d} \right)}_{a + b} \cdot 
-	\left( \bar{a} + \bar{b} + \bar{c} + d \right) \cdot 
-\]
-\[
-	\left( a + b + \bar{c} + d \right) \cdot
-	\left( a + b + c + \bar{d} \right) \cdot 
-	\left( a + \bar{b} + c + d\right) \cdot 
-	\left( a + \bar{b} + c + \bar{d} \right)
-\]
-\[
-	f \left( d,c,b,a \right) = \left( a + b \right) \cdot \left( \bar{a} + \bar{b} + \bar{c} + d \right) \cdot 
-	\left( a + \bar{b} + c + d\right) \cdot \left( a + b + \bar{c} + d \right) \cdot
-\]
-\[
-	\left( a + b + c + \bar{d} \right) \cdot \underbrace{\left( a + \bar{b} + c + \bar{d} \right)  \cdot \left( a + b + c + d \right)}_{a + c}
+	f \left( d,c,b,a \right) = \underbrace{a\bar{b}\bar{c}\bar{d} + ab\bar{c}\bar{d}}_{a\bar{c}\bar{d}} +
+	\underbrace{a\bar{b}c\bar{d} + a\bar{b}cd}_{a\bar{b}c} + \underbrace{a\bar{b}\bar{c}d + ab\bar{c}d}_{a\bar{c}d} + \underbrace{\bar{a}bc\bar{d} + \bar{a}bcd}_{\bar{a}bc} + abcd
 \]
 
 \[
-	f \left( d,c,b,a \right) = \left( a + b \right) \cdot \left( \bar{a} + \bar{b} + \bar{c} + d \right) \cdot 
-	\left( a + c \right) \cdot
-\]
-\[
-	\underbrace{\left( a + \bar{b} + c + d\right) \cdot \left( a + b + c + \bar{d} \right)\cdot}_{\alpha}
-	\underbrace{\left( a + b + \bar{c} + d \right) \cdot \left( a + b + c + \bar{d} \right)}_{\beta}
-\]
-
-\textsc{Cálculo auxiliar}
-\[
-	\alpha = \left[ \left( a + c + d \right) + \bar{b} \right] \cdot 
-	\left[ \left( a + c + \bar{d} \right) + b \right]  
-\]
-\[
-	\alpha = \underbrace{\left( a + c + d \right) \cdot \left( a + c + \bar{d} \right)}_{a + c}
-	+ \left( a + c + d \right) \cdot b + \left( a + c + \bar{d} \right) \cdot \bar{b} +
-	\underbrace{d \bar{d}}_{0}	
-\]
-\[
-	\alpha = a + c + \underbrace{\left( a + c \right) \cdot b + \left( a + c \right) \cdot \bar{b}}_{a + c} 
-	+ \underbrace{db + \bar{d}\bar{b}}_{1}	= a + c + 1
-\]
-
-De forma análoga se puede llegar a que
-\[	\beta = a + b + 1 \]
-
-Por lo tanto,
-\[
-	\alpha \cdot \beta = \left( a + c + 1 \right) \cdot \left( a + b + 1 \right)
+	f \left( d,c,b,a \right) = \bar{a}bc + \underbrace{a\bar{c}\bar{d} + a\bar{c}d}_{a\bar{c}} + a\bar{b}c + \underbrace{abcd + ab\bar{c}d}_{abd} + \underbrace{a\bar{b}\bar{c}\bar{d} + a\bar{b}\bar{c}d}_{a\bar{b}\bar{c}} 
 \]
 
 \[
-	\alpha \cdot \beta = a + b + c + ab + ac + cb + 1 = 1
+	f \left( d,c,b,a \right) = a\bar{c} + \bar{a}bc + abd + \underbrace{a\bar{b}\bar{c} + a\bar{b}c}_{a\bar{b}}
+\]
+
+\[
+	f \left( d,c,b,a \right) = a\bar{c} + \bar{a}bc + abd + a\bar{b} = a\bar{c} + \bar{a}bc + a \left( \bar{b} + bd \right) = a\bar{c} + \bar{a}bc + a \left( \bar{b} + d \right)
 \]
 
 Luego,
 \begin{equation}
-f \left( d,c,b,a \right) = \left( a + b \right) \cdot \left( \bar{a} + \bar{b} + \bar{c} + d \right) \cdot 
-	\left( a + c \right)
+f \left( d,c,b,a \right) = a\bar{c} + \bar{a}bc + a\bar{b} + ad
 	\label{equ:boolmax}
 \end{equation}
 
@@ -249,15 +217,17 @@ A su vez, usando mapas de Karnaugh, se obtiene lo siguiente:
 
 En esta se pueden observar 3 grupos:
 \begin{enumerate}
-	\item Compuesto por los casilleros 0, 4, 8 y 12, obteniéndose la expresión $ b + a $;
-	\item Compuesto por el casillero 7, obteniéndose la expresión $ \bar{a} + \bar{b} + \bar{c} + d $;
-	\item Compuesto por los casilleros 0, 2, 8 y 10, obteniéndose la expresión $ c + a $
+	\item Compuesto por los casilleros 6 y 14, obteniéndose la expresión $ \bar{a} b c $;
+	\item Compuesto por los casilleros 9, 11, 13 y 15, obteniéndose la expresión $ a d $;
+	\item Compuesto por los casilleros 1, 3, 9 y 11, obteniéndose la expresión $ a \bar{c}$;
+	\item Compuesto por los casilleros 1, 5, 9 y 13, obteniéndose la expresión $ a \bar{b} $
 \end{enumerate}
 
 obteniendo finalmente la expresión: 
 
 \begin{equation}
-	f \left( d,c,b,a \right) = \left( b \ + \ a \right) \cdot \left( c \ + \ a \right) \cdot \left( \bar{a} \ + \ \bar{b} \ + \ \bar{c} \ + \ d \right)
+	f \left( d,c,b,a \right) = \bar{a} b c + a d + a \bar{c} + a \bar{b}
+	\label{equ:k2}
 \end{equation}
 
 coincidente con la ecuación	(\ref{equ:boolmax}). Por último, se utiliza dicha formula dicha para elaborar un circuito de compuertas lógicas que la represente.
@@ -268,12 +238,12 @@ coincidente con la ecuación	(\ref{equ:boolmax}). Por último, se utiliza dicha 
 \caption{Circuito resultante de simplificar la expresión (\ref{equ:maxterms}).}
 	\label{fig:circ2}
 \end{figure}
-Luego se dedujo una expresion para escribirlo con compuertas \textbf{NOR}
+Luego se dedujo una expresión para escribirlo con compuertas \textbf{NOR}
 \[
-	f \left( d,c,b,a \right) = \overline{\overline{\left( b \ + \ a \right) \cdot \left( c \ + \ a \right) \cdot \left( \bar{a} \ + \ \bar{b} \ + \ \bar{c} \ + \ d \right)}}
+	f \left( d,c,b,a \right) = \overline{\overline{\bar{a} b c}} + \overline{\overline{a d}} + \overline{\overline{a \bar{c}}} + \overline{\overline{a \bar{b}}}
 \]
 \[
-	f \left( d,c,b,a \right) = \overline{\overline{\left( b \ + \ a \right)} + \overline{\left( c \ + \ a \right)} + \overline{\left( \bar{a} \ + \ \bar{b} \ + \ \bar{c} \ + \ d \right)}}
+	f \left( d,c,b,a \right) = \overline{ \left( \bar{a} \ + \ c \right) } \ + \ \overline{ \left( a \ + \ \bar{b} \ + \ \bar{c} \right) } \ + \ \overline{ \left( \bar{a} \ + \ b \right) } \ + \ \overline{ \left( \bar{a} \ + \ \bar{d}\right) }
 \]
 a la cual le corresponde el siguiente circuito.
 
@@ -285,60 +255,72 @@ a la cual le corresponde el siguiente circuito.
 \end{figure}
 \subsection*{Ejercicio 3}
 \subsection*{Ejercicio 4}
-En este punto se pidio armar un circuito que dados 4 bits de entrada en binario lo transforme a codigo de Gray  se armo la tabla de verdad 
+En este punto se pidió armar un circuito que dados 4 bits de entrada en binario lo transforme a código de Gray  se armo la tabla de verdad 
 \begin{table}[H]
 \centering
 \begin{tabular}{|c|c|c|c|c|c|c|c|c|}
 \hline
-\textbf{$d$} & \textbf{$c$} & \textbf{$b$} & \textbf{$a$} & \textbf{$m_{ij}$} & \textbf{$y_4$} & \textbf{$y_3$} & \textbf{$y_2$} & \textbf{$y_1$} \\ \hline
-0              & 0              & 0              & 0              & \textbf{$m_{i0}$}   & 0              & 0              & 0              & 0              \\ \hline
-0              & 0              & 0              & 1              & \textbf{$m_{i1}$}   & 0              & 0              & 0              & 1              \\ \hline
-0              & 0              & 1              & 0              & \textbf{$m_{i2}$}   & 0              & 0              & 1              & 1              \\ \hline
-0              & 0              & 1              & 1              & \textbf{$m_{i3}$}   & 0              & 0              & 1              & 0              \\ \hline
-0              & 1              & 0              & 0              & \textbf{$m_{i4}$}   & 0              & 1              & 1              & 0              \\ \hline
-0              & 1              & 0              & 1              & \textbf{$m_{i5}$}   & 0              & 1              & 1              & 1              \\ \hline
-0              & 1              & 1              & 0              & \textbf{$m_{i6}$}   & 0              & 1              & 0              & 1              \\ \hline
-0              & 1              & 1              & 1              & \textbf{$m_{i7}$}   & 0              & 1              & 0              & 0              \\ \hline
-1              & 0              & 0              & 0              & \textbf{$m_{i8}$}   & 1              & 1              & 0              & 0              \\ \hline
-1              & 0              & 0              & 1              & \textbf{$m_{i9}$}   & 1              & 1              & 0              & 1              \\ \hline
-1              & 0              & 1              & 0              & \textbf{$m_{iA}$}   & 1              & 1              & 1              & 1              \\ \hline
-1              & 0              & 1              & 1              & \textbf{$m_{iB}$}   & 1              & 1              & 1              & 0              \\ \hline
-1              & 1              & 0              & 0              & \textbf{$m_{iC}$}   & 1              & 0              & 1              & 0              \\ \hline
-1              & 1              & 0              & 1              & \textbf{$m_{iD}$}   & 1              & 0              & 1              & 1              \\ \hline
-1              & 1              & 1              & 0              & \textbf{$m_{iE}$}   & 1              & 0              & 0              & 1              \\ \hline
-1              & 1              & 1              & 1              & \textbf{$m_{iF}$}   & 1              & 0              & 0              & 0              \\ \hline
+\multicolumn{1}{|c|}{\textbf{$d$}} & \multicolumn{1}{c|}{\textbf{$c$}} & \multicolumn{1}{c|}{\textbf{$b$}} & \textbf{$a$} & \textbf{$m_{ij}$} & \multicolumn{1}{c|}{\textbf{$y_4$}} & \multicolumn{1}{c|}{\textbf{$y_3$}} & \multicolumn{1}{c|}{\textbf{$y_2$}} & \multicolumn{1}{c|}{\textbf{$y_1$}} \\ \hline
+0                                  & 0                                 & 0                                 & 0            & \textbf{$m_{i0}$} & 0                                   & 0                                   & 0                                   & 0                                   \\ \cline{5-5}
+0                                  & 0                                 & 0                                 & 1            & \textbf{$m_{i1}$} & 0                                   & 0                                   & 0                                   & 1                                   \\ \cline{5-5}
+0                                  & 0                                 & 1                                 & 0            & \textbf{$m_{i2}$} & 0                                   & 0                                   & 1                                   & 1                                   \\ \cline{5-5}
+0                                  & 0                                 & 1                                 & 1            & \textbf{$m_{i3}$} & 0                                   & 0                                   & 1                                   & 0                                   \\ \cline{5-5}
+0                                  & 1                                 & 0                                 & 0            & \textbf{$m_{i4}$} & 0                                   & 1                                   & 1                                   & 0                                   \\ \cline{5-5}
+0                                  & 1                                 & 0                                 & 1            & \textbf{$m_{i5}$} & 0                                   & 1                                   & 1                                   & 1                                   \\ \cline{5-5}
+0                                  & 1                                 & 1                                 & 0            & \textbf{$m_{i6}$} & 0                                   & 1                                   & 0                                   & 1                                   \\ \cline{5-5}
+0                                  & 1                                 & 1                                 & 1            & \textbf{$m_{i7}$} & 0                                   & 1                                   & 0                                   & 0                                   \\ \cline{5-5}
+1                                  & 0                                 & 0                                 & 0            & \textbf{$m_{i8}$} & 1                                   & 1                                   & 0                                   & 0                                   \\ \cline{5-5}
+1                                  & 0                                 & 0                                 & 1            & \textbf{$m_{i9}$} & 1                                   & 1                                   & 0                                   & 1                                   \\ \cline{5-5}
+1                                  & 0                                 & 1                                 & 0            & \textbf{$m_{iA}$} & 1                                   & 1                                   & 1                                   & 1                                   \\ \cline{5-5}
+1                                  & 0                                 & 1                                 & 1            & \textbf{$m_{iB}$} & 1                                   & 1                                   & 1                                   & 0                                   \\ \cline{5-5}
+1                                  & 1                                 & 0                                 & 0            & \textbf{$m_{iC}$} & 1                                   & 0                                   & 1                                   & 0                                   \\ \cline{5-5}
+1                                  & 1                                 & 0                                 & 1            & \textbf{$m_{iD}$} & 1                                   & 0                                   & 1                                   & 1                                   \\ \cline{5-5}
+1                                  & 1                                 & 1                                 & 0            & \textbf{$m_{iE}$} & 1                                   & 0                                   & 0                                   & 1                                   \\ \cline{5-5}
+1                                  & 1                                 & 1                                 & 1            & \textbf{$m_{iF}$} & 1                                   & 0                                   & 0                                   & 0                                   \\ \cline{5-5}
+\hline
 \end{tabular}
 \end{table}
 
-Se procede a escribir cada bit de salida en funcion de los minterminos:
+Se procede a escribir cada bit de salida en función de los minterminos:
 \[
-	y_4 = \sum_{j=8}^{F} m_{4j}  \  ; \ y_3 = \sum_{j=4}^{B} m_{3j}\  ; \ y_2 = \sum_{j=2}^{5} m_{2j} \ + \  \sum_{j=A}^{D} m_{2j}  \  ; \  y_1=m_{11}+m_{12}+m_{15}+m_{16}+m_{19}+m_{1A}+m_{1D}+m_{1E} 
+	y_4 = \sum_{j=8}^{F} m_{4j}  \  ; \ y_3 = \sum_{j=4}^{B} m_{3j}\  ; \ y_2 = \sum_{j=2}^{5} m_{2j} \ + \  \sum_{j=A}^{D} m_{2j}  \  ;\]
+\[
+	y_1=m_{11}+m_{12}+m_{15}+m_{16}+m_{19}+m_{1A}+m_{1D}+m_{1E} 
 \]
 luego para llegar a la forma simplificada se hizo el mapa de Karnaugh de cada salida:
+
+
 \input{Karnaugh/Mapa3.tex}
-Se puede ver que $$y_4 = d$$
-del segundo bit:
+Se puede ver que $y_4 = d$ del segundo bit:
+
+
 \input{Karnaugh/Mapa4.tex}
 De aqui $$y_3 = \bar{d}c+d\bar{c}$$
 continuando para la siguiente salida:
+
+
 \input{Karnaugh/Mapa5.tex}
 De aqui $$y_2 = \bar{c}b+c\bar{b}$$
 continuando para la ultima salida:
+
+
 \input{Karnaugh/Mapa6.tex}
 Finalmente se obtiene: $$y_1 = \bar{b}a+\bar{a}b$$
-Luego se armo el circuito únicamente utilizando compuertas \textbf{OR AND } y \textbf{NOT}
+Luego se armo el circuito únicamente utilizando compuertas \textbf{OR}, \textbf{AND} y \textbf{NOT}
 
 \begin{figure}[H]
 	\centering
 	\includegraphics[width=0.9\textwidth]{Circuito3.PNG}
 	\label{fig:circ3}
 \end{figure}
-Finalmente se implemento en verilog un modulo que realiza la conversion de binario a codigo de gray utilizando la configuracion de compuertas de la \ref{fig:circ3}
+Finalmente se implemento en verilog un modulo que realiza la conversión de binario a código de gray utilizando la configuracion de compuertas de la \ref{fig:circ3}
 y una test bench que prueba todos los casos posibles.
+
+
 \subsection*{Ejercicio 5}
-En este punto habia que implementar en verilog un modulo que reciba dos numeros en formato \textbf{BCD} y devuelva su producto como dos numeros en el mismo formato.
-A lo largo del la implementación se presentaron diversas complicaciones  como el saber que scope tienen las variables, que bloques dentro de un modulo pueden tomar un set de lineas de manera procedural y como relacionar un modulo con otro.
-Luego de haber implementado el codigo se hizo tambien una test-bench que prueba todos los casos posibles
-\center \textcolor{red}{SUPONGO QUE HABRA QUE ESCRIBIR MEJOR ESTO}
+En este punto se implementa un modulo en verilog, que reciba dos números en formato \textbf{BCD} y devuelva su producto como dos números en el mismo formato.
+A lo largo del la implementación, se presentaron diversas complicaciones, como por ejemplo, determinar el scope que poseen las variables, que bloques dentro de un modulo pueden tomar un set de lineas de manera procedural y como relacionar un modulo con otro.
+Luego de haber implementado el código, se procedió a realizar un test-bench, el cual prueba todos los casos posibles que puedan ser recibidos como input por el modulo.
+\center \textcolor{red}{SUPONGO QUE HABRÁ QUE ESCRIBIR MEJOR ESTO}
 \end{document}
 
