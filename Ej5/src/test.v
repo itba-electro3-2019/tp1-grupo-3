@@ -14,5 +14,6 @@ module test(); //Bench test que prueba todas las combinaciones.
                 #1$display("%d\t%d\t%b",x1,x2,y);
             end
         end
+        $display("Leer el principio.")
     end
 endmodule
