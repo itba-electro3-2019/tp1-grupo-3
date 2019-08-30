@@ -51,7 +51,7 @@
 \section*{Desarrollo de la experiencia}
 
 \subsection*{Ejercicio 1}
-Se realizo un programa que calcula el rango y resolucion de la a entrada
+Se realizo un programa que calcula el rango y resolución de la a entrada.
 \subsection*{Ejercicio 2}
 
 Dadas las siguientes expresiones:
@@ -65,10 +65,8 @@ f \left( e,d,c,b,a \right) = \sum m \left( 0,2,4,7,8,10,12,16,18,20,23,24,25,26,
 f \left( d,c,b,a \right) = \prod \left( M_0,M_2,M_4,M_7,M_8,M_{10},M_{12} \right)
 \label{equ:maxterms}
 \end{equation}
-
-se procede a hallar la mínima expresión posible para ambas usando álgebra booleana y mapas de Karnaugh.
+se procede a hallar la mínima expresión posible para ambas, usando tanto álgebra booleana, como mapas de Karnaugh.
 Escribiendo la expresión (\ref{equ:minterms}) en forma de minterminos se obtiene:
-
 \begin{center}
 \[
 	f \left( e,d,c,b,a \right) = \bar{e}\bar{d}\bar{c}\bar{b}\bar{a} \ + \ \bar{e}\bar{d}\bar{c}b\bar{a} \ + \ \bar{e}\bar{d}c\bar{b}\bar{a} \ + \ \bar{e}\bar{d}cba \ + \ \bar{e}d\bar{c}\bar{b}\bar{a} \ + \ \bar{e}d\bar{c}b\bar{a} \ + \ \bar{e}dc\bar{b}\bar{a} \ +
@@ -76,6 +74,7 @@ Escribiendo la expresión (\ref{equ:minterms}) en forma de minterminos se obtien
 \[
 	e\bar{d}\bar{c}\bar{b}\bar{a} \ + \ e\bar{d}\bar{c}b\bar{a} \ + \ e\bar{d}c\bar{b}\bar{a} \ + \ e\bar{d}cba \ + \ ed\bar{c}\bar{b}\bar{a}\ + \ ed\bar{c}\bar{b}a \ + \ ed\bar{c}b\bar{a} \ + \ ed\bar{c}ba \ + \ edc\bar{b}\bar{a} 
 \]
+
 Su desarrollo utilizando álgebra booleana es el siguiente:
 \[
 	f \left( e,d,c,b,a \right) = \underbrace{\bar{e}\bar{d}\bar{c}\bar{b}\bar{a} \ + \ \bar{e}\bar{d}\bar{c}b\bar{a} }_{\bar{e}\bar{d}\bar{c}\bar{a}}\ + 							\underbrace{\bar{e}\bar{d}\bar{c}\bar{b}\bar{a} \ + \bar{e}\bar{d}c\bar{b}  \bar{a}  }_{\bar{e}\bar{d}\bar{b}\bar{a}}\  +
@@ -145,8 +144,6 @@ de esta forma se llega a la expresión:
 \[
 	f \left( e,d,c,b,a \right) = b a \bar{d} c \ + \  e d \bar{c} \ + \ \bar{c} \bar{a} \ + \ \bar{b} \bar{a}
 \]
-
-
 la cual coincide con la ecuación (\ref{equ:boolmin}). De esta forma se representa, mediante un circuito de compuertas lógicas, la formula hallada.
 
 \begin{figure}[H]
@@ -157,14 +154,14 @@ la cual coincide con la ecuación (\ref{equ:boolmin}). De esta forma se represen
 \end{figure}
 
 \begin{center}
-Luego se dedujo una expresion para escribirlo con compuertas \textbf{NOR}
+Luego se dedujo una expresión para escribirlo con compuertas \textbf{NOR}.
 \[
 	f \left( e,d,c,b,a \right) = \overline{\overline{b a \bar{d} c }} \ + \  \overline{\overline{ e d \bar{c}}} \ + \ \overline{\overline{\bar{c} \bar{a}}} \ + \ \overline{\overline{ \bar{b} \bar{a}}}
 \]
 \[
 	f \left( e,d,c,b,a \right) =\overline{\overline{\overline{\bar{b}+\bar{a}+d+\bar{c}}+\overline{\bar{e}+\bar{d}+c}+\overline{c+a}+\overline{b+a}}}
 \]
-A la cual le corresponde el siguiente circuito:
+Al desarrollo anterior le corresponde el siguiente circuito:
 \begin{figure}[H]
 	\centering
 	\includegraphics[width=0.9\textwidth]{Circuito4.PNG}
@@ -180,7 +177,7 @@ Por otro lado, la expresión (\ref{equ:maxterms}) se escribe en forma de maxterm
 	\left( a + b + c + \bar{d} \right) \cdot \left( a + \bar{b} + c + \bar{d} \right) \cdot \left( a + b + \bar{c} +\bar{d} \right)
 \]
 
-Que también puede ser expresada como
+A su vez, esta puede ser expresada como
 \[
 	f \left( d,c,b,a \right) = a\bar{b}\bar{c}\bar{d} + ab\bar{c}\bar{d} +
 	a\bar{b}c\bar{d} + a\bar{b}cd + a\bar{b}\bar{c}d + ab\bar{c}d + \bar{a}bc\bar{d} + \bar{a}bcd + abcd
@@ -210,7 +207,7 @@ f \left( d,c,b,a \right) = a\bar{c} + \bar{a}bc + a\bar{b} + ad
 	\label{equ:boolmax}
 \end{equation}
 
-A su vez, usando mapas de Karnaugh, se obtiene lo siguiente:
+Luego, usando mapas de Karnaugh, se obtiene lo siguiente:
 
 \end{center}
 \input{Karnaugh/Mapa2.tex}
@@ -222,14 +219,11 @@ En esta se pueden observar 3 grupos:
 	\item Compuesto por los casilleros 1, 3, 9 y 11, obteniéndose la expresión $ a \bar{c}$;
 	\item Compuesto por los casilleros 1, 5, 9 y 13, obteniéndose la expresión $ a \bar{b} $
 \end{enumerate}
-
 obteniendo finalmente la expresión: 
-
 \begin{equation}
 	f \left( d,c,b,a \right) = \bar{a} b c + a d + a \bar{c} + a \bar{b}
 	\label{equ:k2}
 \end{equation}
-
 coincidente con la ecuación	(\ref{equ:boolmax}). Por último, se utiliza dicha formula dicha para elaborar un circuito de compuertas lógicas que la represente.
 
 \begin{figure}[H]
