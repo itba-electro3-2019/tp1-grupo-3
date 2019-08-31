@@ -1,6 +1,4 @@
-
 module Binary2BCD(in,out);
-/**/
 input [7:0] in; 
 output reg [7:0]out;
 integer number;//donde se guarda el numero entero.

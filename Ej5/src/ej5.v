@@ -9,21 +9,10 @@ output wire [7:0] Y;
 reg [7:0] TOTAL;
 Binary2BCD mybcd(TOTAL,Y);
 always @(A or B) begin //cuando cambie a o b hace el producto lo cual lama a el traductor binario BCD
-    TOTAL=A*B;
+    if (A*B<99)//COn esta verificación te aseguras que entre
+        TOTAL=A*B;
+    else 
+        $display("Input invalido, el siguiente resultado no tendrá significado.");
 end
     
 endmodule 
-
-// module ej5();//Para debugear el modulo individualmente.
-// reg [3:0] A;
-// reg [3:0] B;
-// wire [7:0] Y;
-// reg [7:0] TOTAL;
-// Binary2BCD mybcd(TOTAL,Y);
-// initial begin
-    // A=9;
-    // B=9;
-    // TOTAL=A*B;
-    // #1$display("A=%b B=%b TOTAL= %b Y= %b",A,B,TOTAL,Y);//DEBUG
-// end
-// endmodule 

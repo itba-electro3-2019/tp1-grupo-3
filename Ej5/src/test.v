@@ -7,13 +7,14 @@ module test(); //Bench test que prueba todas las combinaciones.
     initial begin
                 $display("Se mostrará el valor de las entradas en decimal, y luego la salida en  bcd");
                 $display("x1    x  x2    =  BCD");
-        for (i = 0 ;i<10 ;i=i+1 ) begin
-            for (j = 0;j<10 ;j=j+1 ) begin
+        for (i = 0 ;i<30 ;i=i+1 ) begin
+            for (j = 0;j<11 ;j=j+1 ) begin
                 x1=i;
                 x2=j;
-                #1$display("%d\t%d\t%b",x1,x2,y);
+                    #1$display("%d\t%d\t%b",x1,x2,y);
             end
         end
-        $display("Leer el principio.")
+        $display("Leer el principio.");
     end
 endmodule
+
