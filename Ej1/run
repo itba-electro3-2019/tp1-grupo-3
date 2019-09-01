@@ -1,0 +1,87 @@
+#!/usr/bin/python3.6
+
+import sys
+import logging
+
+#logging.basicConfig(level=logging.DEBUG)
+
+ARG_LEN = 3 #Cantidad de argumentos utiles
+PYTHON_COMM_INDEX = 0 #Posicion del comando de python
+FILE_DIR_INDEX = 1 #Posicion de la direccion del archivo
+LOWER_LIMIT = 0 #Limite inferior para los argumentos
+UPPER_LIMIT = 64 #Limite superior para los argumentos
+SIGN_BIT_INDEX = 0 #Posicion del bit de signo
+INTEGER_PART_INDEX = 1 #Posicion para los bits de la parte entera
+NONINTEGER_PART_INDEX = 2 #Posicion para los bits de la parte fraccionaria
+
+###########################################
+#Clase RangeResCalculator                 #
+#                                         #
+#Calcula la resolucion y rango dada una   #
+#convencion de punto fijo.                #
+#Inputs: Valor del bit signado, cantidad  #
+#     de bits en la parte entera, cantidad#
+#     de bits en la parte fraccionaria    #
+###########################################
+#PARA CORRER EL SCRIPT SITUARSE EN EL     #
+#DIRECTORIO DONDE SE ENCUENTRA EL ARCHIVO #
+#Y DESDE LA TERMINAL:                     #
+#./run (sign bit) (#int bits) (#frac bits)#
+###########################################
+
+class RangeResCalculator:
+    def __init__(self):
+        self.arguments = sys.argv
+        logging.debug(self.arguments)
+        self.arguments.pop(0) #Remuevo la direccion del archivo
+        logging.debug(self.arguments)
+
+    def validateArguments(self):
+
+        if (len(self.arguments) != ARG_LEN): #Me fijo que haya 3 argumentos restantes
+            logging.debug("not arglen")
+            return False
+        self.signbit = self.arguments[SIGN_BIT_INDEX] #Ahora que valide que haya 3 argumentos restantes
+        self.intpart = self.arguments[INTEGER_PART_INDEX] #Para mas claridad los escribo en variables separadas
+        self.nonintpart = self.arguments[NONINTEGER_PART_INDEX]
+        for x in self.arguments:
+            if not (x.isnumeric()): #Me fijo que sean numeros
+                logging.debug("notnumeric")
+                return False
+            if not (int(x) >= LOWER_LIMIT): #Me fijo que cada numero sea mayor a un limite inferior
+                logging.debug("not>=0")
+                return False
+            if not (int(x) <= UPPER_LIMIT): #Me fijo que cada numero sea menor a un limite superior
+                logging.debug("not<=64")
+                return False
+        if ((self.signbit == '1') or (self.signbit == '0')): #Me fijo que el bit de signo sea 1 o 0
+            pass
+        else:    
+            logging.debug("signbit not 0 or 1")
+            return False
+        if (((self.signbit == '0') or (self.signbit == '1')) and (self.intpart == '0') and (self.nonintpart == '0')):
+            return False #Si no se posee parte entera o fraccionaria
+        return True #Se cumple la validacion
+
+        
+    def calculateRange(self):
+        if (int(self.signbit) == 0):
+            logging.debug("unsignedrange")
+            logging.debug((2**int(self.intpart), "-", (1/2)**int(self.nonintpart)))
+            return ((2**int(self.intpart))-((1/2)**int(self.nonintpart)))
+        else:
+            logging.debug("signedrange")
+            return (((2**int(self.intpart))-((1/2)**int(self.nonintpart)))+(2**int(self.intpart)))
+
+    def calculateResolution(self):    
+        return (1/2)**int(self.nonintpart)
+    
+    
+    def printResult(self):
+        if(self.validateArguments()):
+            print("Res: ", self.calculateResolution(),"| Ran: ", self.calculateRange())
+        else:
+            print("ERROR")
+
+calc = RangeResCalculator()
+calc.printResult()
