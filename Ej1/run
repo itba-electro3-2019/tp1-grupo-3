@@ -9,8 +9,8 @@ ARG_LEN = 3 #Cantidad de argumentos utiles
 PYTHON_COMM_INDEX = 0 #Posicion del comando de python
 FILE_DIR_INDEX = 1 #Posicion de la direccion del archivo
 LOWER_LIMIT = 0 #Limite inferior para los argumentos
-UPPER_LIMIT = 64 #Limite superior para los argumentos
-SIGN_BIT_INDEX = 0 #Posicion del bit de signo
+UPPER_LIMIT = 1023 #Limite superior para los argumentos
+SIGN_BIT_INDEX = 0 #Posicion del bit de signado
 INTEGER_PART_INDEX = 1 #Posicion para los bits de la parte entera
 NONINTEGER_PART_INDEX = 2 #Posicion para los bits de la parte fraccionaria
 
@@ -19,7 +19,7 @@ NONINTEGER_PART_INDEX = 2 #Posicion para los bits de la parte fraccionaria
 #                                         #
 #Calcula la resolucion y rango dada una   #
 #convencion de punto fijo.                #
-#Inputs: Valor del bit signado, cantidad  #
+#Inputs:1=signado o 0=no signado, cantidad#
 #     de bits en la parte entera, cantidad#
 #     de bits en la parte fraccionaria    #
 ###########################################
