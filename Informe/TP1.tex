@@ -31,6 +31,8 @@
 \rhead{Mechoulam, Lambertucci, Martorell, Londero}
 \rfoot{Página \thepage}
 
+\newcommand{\quotes}[1]{``#1''}
+
 \input{Karnaugh/karnaugh-map.tex}
 
 \begin{document}
@@ -51,7 +53,28 @@
 \section*{Desarrollo de la experiencia}
 
 \subsection*{Ejercicio 1}
-Se realizo un programa que calcula el rango y resolución de la a entrada.
+\subsubsection*{Introducción}
+Se realizo un programa que calcula el rango y resolución de una convención dada de punto fijo. Se le debe pasar a este tres parámetros:
+\begin{itemize}
+\item Un 1 si se considera al numero signado o un 0 si se lo considera no signado.
+\item Cantidad de bits de la parte entera.
+\item Cantidad de bits de la parte fraccionaria.
+\end{itemize}
+En aquel respectivo orden. Ante cualquier entrada que sea considerada como un error, se imprime un mensaje de \quotes{ERROR} por consola. Ante una entrada válida, imprime el rango y resolución calculado.
+
+\subsubsection*{Consideraciones}
+
+A continuación se detallan las consideraciones tomadas junto al análisis realizado de cada caso:
+\begin{itemize}
+\item \textbf{Argumento faltante:} Se consideró como un error la falta de un argumento por más que se pueda optar por igualar al faltante a cero, ya que las instrucciones dentro del archivo son claras.
+\item \textbf{Agumento adicional:} No se puede realizar nada con un argumento adicional por lo que se lo considero como un error.
+\item \textbf{Limitaciones al primer argumento:} El primer argumento adjudica si el programa considerará la convención signada o no signada, por esta razón puede tomar sólamente dos valores, 1 o 0. Cualquier otro valor será un error.
+\item \textbf{Límite inferior de argumento:} Se consideró por fijar un límite inferior a los argumentos igual a 0, ya que valores negativos carecían de sentido.
+\item \textbf{Límite superior de argumento:} Por más que incluyendo ciertos paquetes de python al script, la posibilidad de tener números muy pequeños o muy grandes esta limitado por la cantidad de memoria disponible, se optó por fijar un límite superior ya que el exponente del número normalizado más grande (o más pequeño, siendo el exponente negativo) es de 308. Por esta razón se eligió un límite superior de 1023 ya que $2^1023 \approx 9e+307$.
+\item \textbf{Argumento no numérico:} No se realizará ningún tipo de conversión de letra a número, por lo que se considerará error cualquier entrada no numérica.
+
+\end{itemize}
+
 \subsection*{Ejercicio 2}
 
 Dadas las siguientes expresiones:
@@ -248,6 +271,10 @@ a la cual le corresponde el siguiente circuito.
 	\label{fig:circ5}
 \end{figure}
 \subsection*{Ejercicio 3}
+En el siguiente ejercicio se procedió a implementar un MUX de 4 entradas y un DECODER de 4 salidas en verilog.
+Para realizar dicho MUX se utilizó como entradas un arreglo de 4 bits en el que cada bit corresponde a cada una de las entradas, a su vez se utilizó otro arreglo de pero en este caso de 2 bits donde cada elemento representa los distintos selectores. En este módulo se programo de tal forma que al notarse un cambio en alguna de las entradas o de alguno de los selectores se procede a analizar cual entrada se debe copiar a la salida.
+En lo que corresponde al DECODER de 4 salidas se utilizó un razonamiento análogo pero en este caso se utilizó un arreglo de 2 bits para las 2 entradas y un arreglo de 4 bits para las distintas salidas y se precedió a analizar segun los valores que presentan los dos bits de entrada para asi saber que elemento del arreglo de salida había que colocar en 0 o en 1.
+
 \subsection*{Ejercicio 4}
 En este punto se pidió armar un circuito que dados 4 bits de entrada en binario lo transforme a código de Gray  se armo la tabla de verdad 
 \begin{table}[H]
