@@ -54,24 +54,25 @@
 
 \subsection*{Ejercicio 1}
 \subsubsection*{Introducción}
-Se realizo un programa que calcula el rango y resolución de una convención dada de punto fijo. Se le debe pasar a este tres parámetros:
+Se realizo un programa que calcula el rango y resolución de una convención dada de punto fijo. Se le debe pasar a este tres parámetros en el orden que se presenta a continuación:
 \begin{itemize}
 \item Un 1 si se considera al numero signado o un 0 si se lo considera no signado.
 \item Cantidad de bits de la parte entera.
 \item Cantidad de bits de la parte fraccionaria.
 \end{itemize}
-En aquel respectivo orden. Ante cualquier entrada que sea considerada como un error, se imprime un mensaje de \quotes{ERROR} por consola. Ante una entrada válida, imprime el rango y resolución calculado.
+
+Ante cualquier entrada que sea considerada como un error, se imprime un mensaje de \quotes{ERROR} por consola. Ante una entrada válida, imprime el rango y resolución calculado.
 
 \subsubsection*{Consideraciones}
 
 A continuación se detallan las consideraciones tomadas junto al análisis realizado de cada caso:
 \begin{itemize}
 \item \textbf{Argumento faltante:} Se consideró como un error la falta de un argumento por más que se pueda optar por igualar al faltante a cero, ya que las instrucciones dentro del archivo son claras.
-\item \textbf{Agumento adicional:} No se puede realizar nada con un argumento adicional por lo que se lo considero como un error.
+\item \textbf{Agumento adicional:} No se podría realizar nada con un argumento adicional por lo que se lo consideró como un error.
 \item \textbf{Limitaciones al primer argumento:} El primer argumento adjudica si el programa considerará la convención signada o no signada, por esta razón puede tomar sólamente dos valores, 1 o 0. Cualquier otro valor será un error.
 \item \textbf{Límite inferior de argumento:} Se consideró por fijar un límite inferior a los argumentos igual a 0, ya que valores negativos carecían de sentido.
-\item \textbf{Límite superior de argumento:} Por más que incluyendo ciertos paquetes de python al script, la posibilidad de tener números muy pequeños o muy grandes esta limitado por la cantidad de memoria disponible, se optó por fijar un límite superior ya que el exponente del número normalizado más grande (o más pequeño, siendo el exponente negativo) es de 308. Por esta razón se eligió un límite superior de 1023 ya que $2^1023 \approx 9e+307$.
-\item \textbf{Argumento no numérico:} No se realizará ningún tipo de conversión de letra a número, por lo que se considerará error cualquier entrada no numérica.
+\item \textbf{Límite superior de argumento:} Por más que incluyendo ciertos paquetes de python al script, la posibilidad de tener números muy pequeños o muy grandes esta limitado por la cantidad de memoria disponible, se optó por fijar un límite superior ya que el exponente del número normalizado más grande (o más pequeño, siendo el exponente negativo) es de 308. Por esta razón se eligió un límite superior de 1023 ya que $2^{1023} \approx 9\cdot 10^{307}$.
+\item \textbf{Argumento no numérico:} No se realizó ningún tipo de conversión de letra a número, por lo que se consideró error cualquier entrada no numérica.
 
 \end{itemize}
 
@@ -89,7 +90,7 @@ f \left( d,c,b,a \right) = \prod \left( M_0,M_2,M_4,M_7,M_8,M_{10},M_{12} \right
 \label{equ:maxterms}
 \end{equation}
 se procede a hallar la mínima expresión posible para ambas, usando tanto álgebra booleana, como mapas de Karnaugh.
-Escribiendo la expresión (\ref{equ:minterms}) en forma de minterminos se obtiene:
+Escribiendo (\ref{equ:minterms}) en forma de minterminos se obtiene:
 \begin{center}
 \[
 	f \left( e,d,c,b,a \right) = \bar{e}\bar{d}\bar{c}\bar{b}\bar{a} \ + \ \bar{e}\bar{d}\bar{c}b\bar{a} \ + \ \bar{e}\bar{d}c\bar{b}\bar{a} \ + \ \bar{e}\bar{d}cba \ + \ \bar{e}d\bar{c}\bar{b}\bar{a} \ + \ \bar{e}d\bar{c}b\bar{a} \ + \ \bar{e}dc\bar{b}\bar{a} \ +
@@ -151,7 +152,7 @@ se llega a la expresión
 \end{equation}
 \end{center}
 
-Por otro lado, utilizando mapas de Karnaugh se consigue el siguiente gráfico:
+Por otro lado, utilizando mapas de Karnaugh se consiguen los siguientes gráficos:
 
 \input{Karnaugh/Mapa1.tex}
 
@@ -167,12 +168,12 @@ de esta forma se llega a la expresión:
 \[
 	f \left( e,d,c,b,a \right) = b a \bar{d} c \ + \  e d \bar{c} \ + \ \bar{c} \bar{a} \ + \ \bar{b} \bar{a}
 \]
-la cual coincide con la ecuación (\ref{equ:boolmin}). De esta forma se representa, mediante un circuito de compuertas lógicas, la formula hallada.
+la cual coincide con (\ref{equ:boolmin}). De esta forma se representa, mediante un circuito de compuertas lógicas, la formula hallada.
 
 \begin{figure}[H]
 	\centering
 	\includegraphics[width=0.9\textwidth]{Circuito1.PNG}
-\caption{Circuito resultante de simplificar la expresión (\ref{equ:minterms}).}
+\caption{Circuito resultante de simplificar (\ref{equ:minterms}).}
 	\label{fig:circ1}
 \end{figure}
 
@@ -186,13 +187,14 @@ Luego se dedujo una expresión para escribirlo con compuertas \textbf{NOR}.
 \]
 Al desarrollo anterior le corresponde el siguiente circuito:
 \begin{figure}[H]
+	\hspace*{-1cm}
 	\centering
-	\includegraphics[width=0.9\textwidth]{Circuito4.png}
+	\includegraphics[width=1.2\textwidth]{Circuito4.png}
 	\caption{Circuito unicamente con NOR.}
 	\label{fig:circ4}
 \end{figure}
 
-Por otro lado, la expresión (\ref{equ:maxterms}) se escribe en forma de maxterminos:
+Por otro lado, (\ref{equ:maxterms}) se escribe en forma de maxterminos:
 \[
 	f \left( d,c,b,a \right) = \left( a + b + c + d \right) \cdot \left( a + \bar{b} + c + d\right) \cdot \left( a + b+ \bar{c} + d \right) \cdot \left( \bar{a} + \bar{b} + \bar{c} + d \right) \cdot
 \]
@@ -230,7 +232,7 @@ f \left( d,c,b,a \right) = a\bar{c} + \bar{a}bc + a\bar{b} + ad
 	\label{equ:boolmax}
 \end{equation}
 
-Luego, usando mapas de Karnaugh, se obtiene lo siguiente:
+Posteriormente, usando mapas de Karnaugh, se obtiene lo siguiente:
 
 \end{center}
 \input{Karnaugh/Mapa2.tex}
@@ -247,7 +249,7 @@ obteniendo finalmente la expresión:
 	f \left( d,c,b,a \right) = \bar{a} b c + a d + a \bar{c} + a \bar{b}
 	\label{equ:k2}
 \end{equation}
-coincidente con la ecuación	(\ref{equ:boolmax}). Por último, se utiliza dicha formula dicha para elaborar un circuito de compuertas lógicas que la represente.
+coincidente con (\ref{equ:boolmax}). Por último, se utiliza dicha fórmula para elaborar un circuito de compuertas lógicas que la represente.
 
 \begin{figure}[H]
 	\centering
@@ -272,11 +274,13 @@ a la cual le corresponde el siguiente circuito.
 \end{figure}
 \subsection*{Ejercicio 3}
 En el siguiente ejercicio se procedió a implementar un MUX de 4 entradas y un DECODER de 4 salidas en verilog.
-Para realizar dicho MUX se utilizó como entradas un arreglo de 4 bits en el que cada bit corresponde a cada una de las entradas, a su vez se utilizó otro arreglo de pero en este caso de 2 bits donde cada elemento representa los distintos selectores. En este módulo se programo de tal forma que al notarse un cambio en alguna de las entradas o de alguno de los selectores se procede a analizar cual entrada se debe copiar a la salida.
-En lo que corresponde al DECODER de 4 salidas se utilizó un razonamiento análogo pero en este caso se utilizó un arreglo de 2 bits para las 2 entradas y un arreglo de 4 bits para las distintas salidas y se precedió a analizar segun los valores que presentan los dos bits de entrada para asi saber que elemento del arreglo de salida había que colocar en 0 o en 1.
+Para realizar dicho MUX se utilizó como entradas un arreglo de 4 bits en el que cada bit corresponde a cada una de las entradas. A su vez se utilizó otro arreglo, pero en este caso de 2 bits donde cada elemento representa los distintos selectores. En este módulo se programó de tal forma que al notarse un cambio en alguna de las entradas o de alguno de los selectores se procede a analizar cuál entrada se debe copiar a la salida.
+
+
+En lo que corresponde al DECODER de 4 salidas se utilizó un razonamiento análogo pero en este caso se utilizó un arreglo de 2 bits para las 2 entradas y un arreglo de 4 bits para las distintas salidas. Se procedió a analizar según los valores que presentan los dos bits de entrada para así saber que elemento del arreglo de salida había que colocar en 0 o en 1.
 
 \subsection*{Ejercicio 4}
-En este punto se pidió armar un circuito que dados 4 bits de entrada en binario lo transforme a código de Gray  se armo la tabla de verdad 
+En este punto se pidió armar un circuito que dados 4 bits de entrada en binario, sean transformados a su equivalente en código de Gray. Se armó la tabla de verdad: 
 \begin{table}[H]
 \centering
 \begin{tabular}{|c|c|c|c|c|c|c|c|c|}
@@ -302,13 +306,13 @@ En este punto se pidió armar un circuito que dados 4 bits de entrada en binario
 \end{tabular}
 \end{table}
 
-Se procede a escribir cada bit de salida en función de los minterminos:
+Se procedió a escribir cada bit de salida en función de los mintérminos:
 \[
 	y_4 = \sum_{j=8}^{F} m_{4j}  \  ; \ y_3 = \sum_{j=4}^{B} m_{3j}\  ; \ y_2 = \sum_{j=2}^{5} m_{2j} \ + \  \sum_{j=A}^{D} m_{2j}  \  ;\]
 \[
 	y_1=m_{11}+m_{12}+m_{15}+m_{16}+m_{19}+m_{1A}+m_{1D}+m_{1E} 
 \]
-luego para llegar a la forma simplificada se hizo el mapa de Karnaugh de cada salida:
+luego, para llegar a la forma simplificada, se hizo el mapa de Karnaugh de cada salida:
 
 
 \input{Karnaugh/Mapa3.tex}
@@ -316,12 +320,12 @@ Se puede ver que $y_4 = d$ del segundo bit:
 
 
 \input{Karnaugh/Mapa4.tex}
-De aqui $$y_3 = \bar{d}c+d\bar{c}$$
+De aquí $$y_3 = \bar{d}c+d\bar{c}$$
 continuando para la siguiente salida:
 
 
 \input{Karnaugh/Mapa5.tex}
-De aqui $$y_2 = \bar{c}b+c\bar{b}$$
+De aquí $$y_2 = \bar{c}b+c\bar{b}$$
 continuando para la ultima salida:
 
 
@@ -332,16 +336,19 @@ Luego se armo el circuito únicamente utilizando compuertas \textbf{OR}, \textbf
 \begin{figure}[H]
 	\centering
 	\includegraphics[width=0.9\textwidth]{Circuito3.png}
+	\caption{Conversor codigo de Gray.}
 	\label{fig:circ3}
 \end{figure}
-Finalmente se implemento en verilog un modulo que realiza la conversión de binario a código de gray utilizando la configuracion de compuertas de la \ref{fig:circ3}
+Finalmente, se implementó en verilog un módulo que realiza la conversión de binario a código de gray utilizando la configuración de compuertas de la (\ref{fig:circ3}),
 y una test bench que prueba todos los casos posibles.
 
 
 \subsection*{Ejercicio 5}
-En este punto se implementa un modulo en verilog, que reciba dos números en formato \textbf{BCD} y devuelva su producto como dos números en el mismo formato.
+
+En este punto se implementa un modulo en verilog, que reciba dos números en formato \textbf{BCD} y devuelva su producto como dos números en el mismo formato. Se implementó aprovchando el operador de modulo proporcionado por verilog.  Si bien este fue la implementación final inicialmente se habia implementado con un algoritmo el cual consistia en shiftear el numero y en algunos casos sumarle a un nybble en particular 3. Este modelo fue descartado dado a que cuando fue implementado se utilizaron ciclos \textbf{for}  lo cual en el lenguaje verilog es muy ineficiente.
 A lo largo del la implementación, se presentaron diversas complicaciones, como por ejemplo, determinar el scope que poseen las variables, que bloques dentro de un modulo pueden tomar un set de lineas de manera procedural y como relacionar un modulo con otro.
 Luego de haber implementado el código, se procedió a realizar un test-bench, el cual prueba todos los casos posibles que puedan ser recibidos como input por el modulo.
-\center \textcolor{red}{SUPONGO QUE HABRÁ QUE ESCRIBIR MEJOR ESTO}
+
+
 \end{document}
 
