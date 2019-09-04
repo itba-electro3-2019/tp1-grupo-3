@@ -10,6 +10,8 @@ PYTHON_COMM_INDEX = 0 #Posicion del comando de python
 FILE_DIR_INDEX = 1 #Posicion de la direccion del archivo
 LOWER_LIMIT = 0 #Limite inferior para los argumentos
 UPPER_LIMIT = 1023 #Limite superior para los argumentos
+UPPER_LIMIT_NONINT = 53 #Limite superior para la parte fraccionaria ya que mayor que este valor
+                        #y se redondea el rango a 1
 SIGN_BIT_INDEX = 0 #Posicion del bit de signado
 INTEGER_PART_INDEX = 1 #Posicion para los bits de la parte entera
 NONINTEGER_PART_INDEX = 2 #Posicion para los bits de la parte fraccionaria
@@ -59,6 +61,9 @@ class RangeResCalculator:
         else:    
             logging.debug("signbit not 0 or 1")
             return False
+        if (int(self.nonintpart) > UPPER_LIMIT_NONINT):
+            logging.debug("frac part bigger than 53, gets ran output as 1")
+            return False
         if (((self.signbit == '0') or (self.signbit == '1')) and (self.intpart == '0') and (self.nonintpart == '0')):
             return False #Si no se posee parte entera o fraccionaria
         return True #Se cumple la validacion
@@ -68,10 +73,10 @@ class RangeResCalculator:
         if (int(self.signbit) == 0):
             logging.debug("unsignedrange")
             logging.debug((2**int(self.intpart), "-", (1/2)**int(self.nonintpart)))
-            return ((2**int(self.intpart))-((1/2)**int(self.nonintpart)))
+            return ((2**int(self.intpart))-((1/2)**int(self.nonintpart)) - 0)
         else:
             logging.debug("signedrange")
-            return (((2**int(self.intpart))-((1/2)**int(self.nonintpart)))+(2**int(self.intpart)))
+            return (((2**(int(self.intpart)-1))-(0.5)**int(self.nonintpart))-((-1)*((2**(int(self.intpart)-1)))))
 
     def calculateResolution(self):    
         return (1/2)**int(self.nonintpart)
